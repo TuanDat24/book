@@ -1,0 +1,60 @@
+<div th:fragment="menu">
+
+    <div class="col-sm-3">
+        <div class="left-sidebar">
+            <h2>Brands</h2>
+            <div class="panel-group category-products" id="accordian">
+                <!--category-productsr-->
+                <div th:each="category : ${listCategory}" class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <li><a th:href="@{'/home/'+${category.name}}" th:text="${category.name}"></a></li>
+                        </h4>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="brands_products">
+                <!--brands_products-->
+                <h2>Danh Mục Sách</h2>
+                <div class="brands-name">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href=""> <span class="pull-right">(16)</span> Sách kinh tế & tài chính
+                        </a></li>
+                        <li><a href=""> <span class="pull-right">(5)</span> Sách khám phá
+                        </a></li>
+                        <li><a href=""> <span class="pull-right">(7)</span> Sách kỹ năng giao tiếp
+                        </a></li>
+                        <li><a href=""> <span class="pull-right">(12)</span> Sách tình yêu
+                        </a></li>
+                        <li><a href=""> <span class="pull-right">(2)</span> Sách truyện kiếm hiệp
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--/brands_products-->
+
+            <div class="price-range">
+                <!--price-range-->
+                <h2>Price Range</h2>
+                <div class="well">
+                    <input type="text" class="span2" value="" data-slider-min="30000"
+                           data-slider-max="600000" data-slider-step="5"
+                           data-slider-value="[250000,450000]" id="sl2"><br/> <b>30.000 VND</b>
+                    <b class="pull-right">600.000 VND</b>
+                </div>
+            </div>
+            <!--/price-range-->
+
+            <!--            <div class="shipping text-center" style="height: 300px; background-color: white">-->
+            <!--                &lt;!&ndash;shipping&ndash;&gt;-->
+            <!--                <img th:src="@{/Frontend/images/mua.jpg}" alt="" style="height: 250px;padding-top: 25px"/>-->
+            <!--            </div>-->
+            <!--/shipping-->
+
+        </div>
+        <!--        <div th:replace="common/footer :: footer"></div>-->
+    </div>
+
+</div>

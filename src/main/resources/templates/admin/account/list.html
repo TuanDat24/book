@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Quản Lí Tài Khoản</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" th:href="@{/Backend/plugins/fontawesome-free/css/all.min.css}">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" th:href="@{/Backend/plugins/datatables-bs4/css/dataTables.bootstrap4.css}">
+  <link rel="stylesheet" th:href="@{/Backend/dist/css/adminlte.min.css}">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <div th:replace="common/headeradmin :: header"></div>
+  
+  <div class="content-wrapper">
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Quản Lý Tài Khoản</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Admin</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"> <a th:href="@{/admin/QuanLyTaiKhoan/Them}">Thêm tài khoản</a> </h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th th:text="#{id}"></th>
+                  <th>Hình ảnh</th>
+                  <th>Tên Người Dùng</th>
+                  <th>Địa Chỉ</th>
+                  <th>Số Điện Thoại</th>
+                  <th>Tài Khoản</th>
+                  <th>Email</th>
+                  <th th:text="#{status}"></th>
+                  <th>Vai Trò</th>
+                  <th th:text="#{manipulation}"></th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                
+                <tr th:each="account : ${list}">
+                  <td th:text="${account.id}"></td>
+                  <td th:text="${account.avatar}"></td>
+                  <td th:text="${account.fullname}"></td>
+                  <td th:text="${account.address}"></td>
+                  <td th:text="${account.phone}"></td>
+                  <td th:text="${account.username}"></td>
+                  <td th:text="${account.email}"></td>
+                  <td th:text="${account.active == true}? #{active}:#{inactive}"></td>
+                  <td><p th:each="role : ${account.roles}" th:text="${role}"><p></td>
+                  <td>
+                     <a th:href="@{'/admin/QuanLyTaiKhoan/ChiTiet/' + ${account.id} }">Chi tiết</a>
+                     <a th:href="@{'/admin/QuanLyTaiKhoan/Sua/' + ${account.id} }" >Sửa</a>
+                     <a th:href="@{'/admin/QuanLyTaiKhoan/Xoa/' + ${account.id} }">Xóa</a>
+                  </td>
+                </tr>  
+                
+                                   
+               </tbody>
+                
+              </table>
+            </div>
+ 
+          </div>
+
+        </div>
+
+      </div>
+      
+      
+      
+
+    </section>
+
+  </div>
+  
+  
+  
+  <div th:replace="common/footeradmin :: footer"></div>
+</div>
+
+<script th:src="@{/Backend/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/Backend/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/Backend/plugins/datatables/jquery.dataTables.js}"></script>
+<script th:src="@{/Backend/plugins/datatables-bs4/js/dataTables.bootstrap4.js}"></script>
+<script th:src="@{/Backend/dist/js/adminlte.min.js}"></script>
+<script th:src="@{/Backend/dist/js/demo.js}"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
+</script>
+
+</body>
+</html>

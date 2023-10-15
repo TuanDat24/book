@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Cart | E-Shopper</title>
+    <link th:href="@{/Frontend/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/Frontend/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/Frontend/css/prettyPhoto.css}" rel="stylesheet">
+    <link th:href="@{/Frontend/css/price-range.css}" rel="stylesheet">
+    <link th:href="@{/Frontend/css/animate.css}" rel="stylesheet">
+	<link th:href="@{/Frontend/css/main.css}" rel="stylesheet">
+	<link th:href="@{/Frontend/css/responsive.css}" rel="stylesheet">
+     
+    <link rel="shortcut icon" th:href="@{/Frontend/images/ico/favicon.ico}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" th:href="@{/Frontend/images/ico/apple-touch-icon-144-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" th:href="@{/Frontend/images/ico/apple-touch-icon-114-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" th:href="@{/Frontend/images/ico/apple-touch-icon-72-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" th:href="@{/Frontend/images/ico/apple-touch-icon-57-precomposed.png}">
+</head><!--/head-->
+
+<body>
+	
+	<div th:replace="common/header :: header"></div>
+		
+	<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Shopping Cart</li>
+				</ol>
+			</div>
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Tên Sản Phẩm</td>
+							<td class="description"></td>
+							<td class="price">Giá</td>
+							<td class="quantity">Số Lượng</td>
+							<td class="total">Tổng Tiền</td>					
+						</tr>
+					</thead>
+					<tbody>
+												
+						<tr th:each="productOrderDTO : ${order.productOrderDTOs}">
+							<td class="cart_product">
+								<a href=""><img th:src="@{'/images/' + ${productOrderDTO.productDTO.url_image}}" alt="" style="width: 100px; height: 100px;"></a>
+							</td>
+							
+							<td class="cart_description">
+								<h4 th:text="${productOrderDTO.productDTO.name}"></h4>
+								<p></p>
+							</td>
+							<td class="cart_price">
+								<p th:text="${#numbers.formatCurrency(productOrderDTO.productDTO.price)}"></p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">								
+									<input class="cart_quantity_input" type="text" name="quantity" th:value="${productOrderDTO.number}" autocomplete="off" size="2" disabled="disabled">									
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price" th:text="${#numbers.formatCurrency(productOrderDTO.getToTalMoney())}"></p>
+							</td>
+							
+						</tr>								
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+	<section id="do_action">
+		<div class="container">
+			
+			<div class="row">				
+				<div class="col-sm-8">
+					<div class="total_area">
+						<ul>							
+							<li>Tên: <span th:text="${order.accountDTO.fullname}"></span> </li>
+							<li>Địa chỉ: <span th:text="${order.accountDTO.address}"></span> </li>
+							<li>Số điện thoại: <span th:text="${order.accountDTO.phone}"></span> </li>
+							<li>Số tiền thanh toán: <span th:text="${#numbers.formatCurrency(order.getTotalMoney())}"></span> </li>
+						</ul>
+							
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!--/#do_action-->
+
+
+
+    <script th:src="@{/Frontend/js/jquery.js}"></script>
+	<script th:src="@{/Frontend/js/bootstrap.min.js}"></script>
+	<script th:src="@{/Frontend/js/jquery.scrollUp.min.js}"></script>
+    <script th:src="@{/Frontend/js/jquery.prettyPhoto.js}"></script>
+    <script th:src="@{/Frontend/js/main.js}"></script>
+</body>
+</html>

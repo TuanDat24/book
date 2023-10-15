@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Books Store</title>
+<link th:href="@{/Frontend/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/Frontend/css/font-awesome.min.css}" rel="stylesheet">
+<link th:href="@{/Frontend/css/prettyPhoto.css}" rel="stylesheet">
+<link th:href="@{/Frontend/css/price-range.css}" rel="stylesheet">
+<link th:href="@{/Frontend/css/animate.css}" rel="stylesheet">
+<link th:href="@{/Frontend/css/main.css}" rel="stylesheet">
+<link th:href="@{/Frontend/css/responsive.css}" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="shortcut icon" href="@{Frontend/images/ico/favicon.ico}">
+</head>
+
+<body>
+	<div th:replace="common/header :: header"></div>
+<!--	<div th:replace="common/slider :: slider"></div>-->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="carousel-inner">
+					<div class="carousel-item active ">
+						<img th:src="@{/images/slider1.jpg}" width="1200px">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<section style="padding-top: 50px">
+		<div class="container" >
+			<div class="col-sm-12">
+				<div th:replace="common/menu :: menu">
+				</div>
+				<div class="col-sm-9 padding-right">
+					<div class="product-details"><!--product-details-->
+						<div class="col-sm-5">
+							<div class="view-product">
+								<img th:src="@{'/images/' + ${product.url_image} }" alt="" />
+								<h4>Ảnh</h4>
+							</div>
+						</div>
+						<div class="col-sm-7">
+							<div class="product-information"><!--/product-information-->
+								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
+								<h2 th:text="${product.name}"></h2>
+								 <form th:action="@{ '/cart/addProduct/' + ${product.id} }" method="get">
+								   <span>
+									<span th:text="${product.price} + ' đ'"></span>
+									<label>Số lượng</label>
+									<input name="number" type="text" value="1" />
+									<button type="submit" class="btn btn-fefault cart" >
+										<i class="fa fa-shopping-cart"></i>
+										Mua sản phẩm
+									</button>
+								   </span>
+								 </form>
+								<h5><b>Trạng thái: </b> Còn hàng</h5>
+							</div><!--/product-information-->
+						</div>
+					</div><!--/product-details-->
+					
+					<div class="category-tab shop-details-tab"><!--category-tab-->
+						<div class="col-sm-12">
+							<ul class="nav nav-tabs">												
+								<li class="active"><a href="#reviews" data-toggle="tab">Nhận xét</a></li>
+							</ul>
+						</div>
+
+						<div class="tab-content">
+							<div class="tab-pane fade active in" id="reviews" >
+								<div class="col-sm-12">
+									<ul>
+										<li><a href=""><i class="fa fa-user" th:text="${product.createdBy}"></i></a></li>
+										<li><a href=""><i class="fa fa-clock-o"  th:text="${#dates.format(product.createdDate, 'HH:mm')}"></i></a></li>
+										<li><a href=""><i class="fa fa-clock-o"  th:text="${#dates.format(product.createdDate, 'dd-MM-yyyy')}"></i></a></li>
+									</ul>
+									<p th:text="${product.name}"></p>
+									<p><b>Nhận xét</b></p>
+									<form action="#">
+										<span>
+											<input type="text" placeholder="Your Name"/>
+											<input type="email" placeholder="Email Address"/>
+										</span>
+										<textarea name="" ></textarea>
+										<b>Rating: </b> <img src="src/main/resources/static/Frontend/images/product-details/rating.png" alt="" />
+										<button type="button" class="btn btn-default pull-right">
+											Submit
+										</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div><!--/category-tab-->
+
+					<div class="recommended_items"><!--recommended_items-->
+						<h2 class="title text-center">recommended items</h2>
+
+						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+							<div class="carousel-inner">
+								<div class="item active">
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img th:src="@{/images/recommend1.jpg}" alt="" />
+													<h2>56.000 VND</h2>
+													<p>Tư vấn tâm lý học đường</p>
+													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img th:src="@{/images/recommend2.jpg}" alt="" />
+													<h2>56.000 VND</h2>
+													<p>Are you really</p>
+													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img th:src="@{/images/recommend3.jpg}" alt="" />
+													<h2>56.000 VND</h2>
+													<p>Phá bỏ giới hạn</p>
+													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img th:src="@{/images/recommend4.jpg}" alt="" />
+													<h2>56.000 VND</h2>
+													<p>Lập trình não bộ</p>
+													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img th:src="@{/images/recommend5.jpg}" alt="" />
+													<h2>56.000 VND</h2>
+													<p>Tìm kiếm sự thành công</p>
+													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img th:src="@{/images/recommend6.jpg}" alt="" />
+													<h2>56.000 VND</h2>
+													<p>Cẩm nang tuổi dậy thì</p>
+													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+								<i class="fa fa-angle-left"></i>
+							  </a>
+							  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+								<i class="fa fa-angle-right"></i>
+							  </a>
+						</div>
+					</div><!--/recommended_items-->
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	<div th:replace="common/footer :: footer"></div>
+	
+	
+
+  
+
+	<script th:src="@{/Frontend/js/jquery.js}"></script>
+	<script th:src="@{/Frontend/js/price-range.js}"></script>
+	<script th:src="@{/Frontend/js/jquery.scrollUp.min.js}"></script>
+	<script th:src="@{/Frontend/js/bootstrap.min.js}"></script>
+	<script th:src="@{/Frontend/js/jquery.prettyPhoto.js}"></script>
+	<script th:src="@{/Frontend/js/main.js}"></script>
+	
+	<script type="text/javascript">
+	  function addCart(){
+		  var xhttp = new XMLHttpRequest();
+			var idProduct = document.getElementById('idProduct').value;
+			var number = document.getElementById('number').value;
+			var url = "/cart/addProduct?idProduct="+id + "&number="+number;
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					
+				}
+			};
+			xhttp.open("GET", url, true);
+			xhttp.send();
+	  }
+	
+	</script>
+</body>
+</html>

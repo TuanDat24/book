@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Checkout | E-Shopper</title>
+    <link th:href="@{/Frontend/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/Frontend/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/Frontend/css/prettyPhoto.css}" rel="stylesheet">
+    <link th:href="@{/Frontend/css/price-range.css}" rel="stylesheet">
+    <link th:href="@{/Frontend/css/animate.css}" rel="stylesheet">
+	<link th:href="@{/Frontend/css/main.css}" rel="stylesheet">
+	<link th:href="@{/Frontend/css/responsive.css}" rel="stylesheet">
+          
+    <link rel="shortcut icon" th:href="@{/Frontend/images/ico/favicon.ico}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" th:href="@{/Frontend/images/ico/apple-touch-icon-144-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" th:href="@{/Frontend/images/ico/apple-touch-icon-114-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" th:href="@{/Frontend/images/ico/apple-touch-icon-72-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" th:href="@{/Frontend/images/ico/apple-touch-icon-57-precomposed.png}">
+</head><!--/head-->
+<body>
+    <div th:replace="common/header :: header"></div>
+    
+    <section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Check out</li>
+				</ol>
+			</div><!--/breadcrums-->
+			<div class="review-payment">
+				<h2>Review & Payment</h2>
+			</div>
+
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image"></td>
+							<td class="description"></td>
+							<td class="price">Không có sản phẩm nào trong giỏ hàng</td>
+							<td class="quantity"></td>
+							<td class="total"></td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+												
+						
+						
+					
+					</tbody>
+				</table>
+			</div>
+				
+		</div>
+	</section>
+    
+    
+    <div th:replace="common/footer :: footer"></div> 
+    <script th:src="@{/Frontend/js/jquery.js}"></script>
+	<script th:src="@{/Frontend/js/bootstrap.min.js}"></script>
+    <script th:src="@{/Frontend/js/jquery.scrollUp.min.js}"></script>
+    <script th:src="@{/Frontend/js/jquery.prettyPhoto.js}"></script>
+    <script th:src="@{/Frontend/js/main.js}"></script>
+</body>
+</html>

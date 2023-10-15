@@ -1,0 +1,100 @@
+<div th:fragment="header">
+	<header id="header">
+		<!--header-->
+		<div class="header_top">
+			<!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills" style="color: #D57E67">
+								<li><a href="#" ><i class="fa fa-phone"></i>Chào mừng bạn đến với BookStore|Hotline:0123456789</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i>
+									BookStore@gmail.com</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/header_top-->
+
+		<div class="header-middle">
+			<!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 clearfix">
+						<div class="logo pull-left">
+							<a th:href="@{/home}"><img th:src="@{/images/logoBookstore.png}" alt="" width="100" height="100" /></a>
+						</div>						
+					</div>
+					<div class="col-md-8 clearfix">
+						<div class="shop-menu clearfix pull-right">
+							<ul class="nav nav-pills" >
+								<li th:if="${authentication == null}"><a th:href="@{/register}"><i class="fa fa-user"></i>Đăng kí</a></li>
+								<li th:if="${authentication == null}"><a th:href="@{/login}"><i class="fa fa-user"></i>Đăng nhập</a></li>
+								<li><a th:href="@{/cart/view}"><i class="fa fa-shopping-cart"></i>
+										Cart</a></li>
+								<li th:if="${authentication != null}" class="dropdown" style="padding: 10px">
+									<i class="fa fa-user" data-toggle="dropdown" mar><a th:text="${authentication}"></a></i>
+											<ul class="dropdown-menu">
+												<li><a href="" th:href="@{/admin}">Login Quản lý</a></li>
+											</ul>
+								</li>
+
+								<li th:if="${authentication != null}"><a th:href="@{/logout}">Logout</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/header-middle-->
+
+		<div class="header-bottom">
+			<!--header-bottom-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle"
+								data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span> <span
+									class="icon-bar"></span> <span class="icon-bar"></span> <span
+									class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse">
+								<li><a th:href="@{/home}" class="active">Trang Chủ</a></li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Danh mục sách</a>
+									<div class="dropdown-menu">
+										<ul class="list-group list-group-flush">
+											<li class="list-group-item">Sách thiếu nhi</li>
+											<li class="list-group-item">Sách phát triển bản thân</li>
+											<li class="list-group-item">Sách chinh thám</li>
+											<li class="list-group-item">Sách tình yêu</li>
+										</ul>
+									</div>
+								</li>
+								<li><a href="">Sách Combo</a></li>
+								<li><a href="">Nhà xuất bản</a></li>
+								<li><a href="">Tin tức</a></li>
+								<li><a href="">Liên hệ</a></li>
+
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="search_box pull-right">
+							<input type="text" placeholder="Search" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/header-bottom-->
+	</header>
+	<!--/header-->
+</div>

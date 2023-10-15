@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Books Store</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<link th:href="@{/Frontend/css/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/Frontend/css/font-awesome.min.css}" rel="stylesheet">
+	<link th:href="@{/Frontend/css/prettyPhoto.css}" rel="stylesheet">
+	<link th:href="@{/Frontend/css/price-range.css}" rel="stylesheet">
+	<link th:href="@{/Frontend/css/animate.css}" rel="stylesheet">
+	<link th:href="@{/Frontend/css/main.css}" rel="stylesheet">
+	<link th:href="@{/Frontend/css/responsive.css}" rel="stylesheet">
+	<link rel="shortcut icon" href="@{Frontend/images/ico/favicon.ico}">
+</head>
+<!--/head-->
+<body>
+<div th:replace="common/header :: header"></div>
+<div th:replace="common/slider :: slider"></div>
+
+
+<section th:action="@{/home}" method="post" style="padding-top: 20px">
+    <div class="container">
+        <div class="col-sm-12">
+            <div th:replace="common/menu :: menu"></div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center">Features Items</h2>
+                    <label>Tìm Kiếm:</label> <input id="inputProduct" type="text"
+                                                    onkeyup="searchProduct()"/> <label>Sắp xếp:</label>
+                    <select id="selectProduct" style="width: 300px;" onchange="searchProductSort()">
+                        <option value="0">Giá từ thấp tới cao</option>
+                        <option value="1">Giá từ cao tới thấp</option>
+
+                    </select> <br/>
+                    <div id="result" >
+                        <div class="row" style="display: flex; padding: 20px">
+                        <div th:each="product : ${listProduct}" class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products" >
+                                    <div class="productinfo text-center">
+                                        <img th:src="@{'/images/' + ${product.url_image}  }"
+                                             alt="Khong hien hinh anh">
+                                        <h2 th:text="${product.price} +' đ'"></h2>
+                                        <p th:text="${product.name}"></p>
+
+                                        <a href="#" class="btn btn-default add-to-cart"><i
+                                                class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                    </div>
+                                    <div class="product-overlay">
+                                        <div class="overlay-content">
+                                            <h2 th:text="${product.price} + ' đ'"> </h2>
+                                            <h4 th:text="${product.name}"></h4>
+                                            <a th:href="@{'/cart/add/' + ${product.id}}"
+                                               class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="choose" >
+                                    <ul class="nav nav-pills nav-justified" >
+                                        <li ><a th:href="@{'/detailproduct/' + ${product.id}}" style="width: 100px"  ><i class="fa fa-plus-square"></i>Xem chi tiết</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="phantrang" style="text-align: center; padding-top: 20px">
+                            <ul class="pagination">
+                                <li th:class=" ${page == 1}?'active':'' "><a
+                                        th:href="@{/home/pages?page=1}">1</a></li>
+                                <li th:class=" ${page == 2}?'active':'' "><a
+                                        th:href="@{/home/pages?page=2}">2</a></li>
+                                <li th:class="${page == 3}?'active':''"><a
+                                        th:href="@{/home/pages?page=3}">3</a></li>
+                                <li th:class="${page > 3}?'active':''"><a
+                                        th:href="@{/home/pages(page=${page+1})}"> &raquo; </a></li>
+                            </ul>
+                        </div>
+                    <!--features_items-->
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<div th:replace="common/footer :: footer"></div>
+
+
+<script th:src="@{/Frontend/js/jquery.js}"></script>
+<script th:src="@{/Frontend/js/price-range.js}"></script>
+<script th:src="@{/Frontend/js/jquery.scrollUp.min.js}"></script>
+<script th:src="@{/Frontend/js/bootstrap.min.js}"></script>
+<script th:src="@{/Frontend/js/jquery.prettyPhoto.js}"></script>
+<script th:src="@{/Frontend/js/main.js}"></script>
+
+<script type="text/javascript">
+    function searchProduct() {
+        var xhttp = new XMLHttpRequest();
+        var name = document.getElementById('inputProduct').value;
+        var url = "/searchInput?name=" + name;
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('result').innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", url, true);
+        xhttp.send();
+    }
+
+    function searchProductSort() {
+        var xhttp = new XMLHttpRequest();
+        var id = document.getElementById('selectProduct').value;
+        var url = "/searchProductSort?id=" + id;
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('result').innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", url, true);
+        xhttp.send();
+    }
+</script>
+</body>
+</html>

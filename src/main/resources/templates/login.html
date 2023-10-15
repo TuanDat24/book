@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org./1999/xhtml">
+<header>
+    <title>Books Store</title>
+    <link rel="icon" href="/image/icon-logo.png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito|Roboto|Roboto+Condensed|Roboto+Slab" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <!--    <link href="/css/bootstrap.min.css" rel="stylesheet">-->
+    <link th:href="@{/Frontend/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Tables plugin -->
+    <!--    <link href="/css/datatables.min.css" rel="stylesheet">-->
+    <link th:href="@{/Frontend/css/datatables.min.css}" rel="stylesheet">
+    <!-- Bootstrap tagsinput -->
+    <link th:href="@{/Frontend/css/tagsinput.css}" rel="stylesheet">
+    <!-- Simple pagination -->
+    <!--    <link href="/css/simplePagination.css" rel="stylesheet" />-->
+    <link th:href="@{/Frontend/css/simplePagination.css}" rel="stylesheet">
+    <!-- Slick carousel -->
+    <link href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" rel="stylesheet" />
+    <link href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" rel="stylesheet" />
+    <!-- Custom styles -->
+    <!--    <link href="/css/style.css" rel="stylesheet">-->
+    <link th:href="@{/Frontend/css/style.css}" rel="stylesheet">
+    <!-- Feather icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</header>
+
+<body class="d-flex flex-column">
+<div class="container my-3 my-sm-5 page-content">
+    <div class="row justify-content-center" id="row-login">
+        <div class="card-login">
+            <div class="card-body">
+                <div class="row">
+                    <!-- Login Form -->
+                    <div class="col-md-9 col-login">
+                        <form th:action="@{/login}" method="post" >
+                            <div class="form-group text-center mb-2">
+                                <h2 class="mb-0">Log In</h2>
+                                <em>to your account</em>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-icon">
+                                    <i data-feather="user"></i>
+                                    <input required="required" type="text" class="form-control" placeholder="Username" name="username" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-icon">
+                                    <i data-feather="lock"></i>
+                                    <input required="required" type="password" class="form-control" placeholder="Password" name="password">
+                                    <div class="invalid-feedback"th:text="${param.err}" style="color: red"></div>
+                                </div>
+                            </div>
+                            <div class="form-group d-flex justify-content-between">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox"
+                                           class="custom-control-input" id="loginRemember" name="remember-me">
+                                    <label class="custom-control-label"
+                                           for="loginRemember">Remember me</label>
+                                </div>
+                                <a href="#" class="text-primary small reset">Forgot
+                                    password ?</a>
+                            </div>
+                            <button type="submit"
+                                    class="btn btn-primary btn-block">LOGIN</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
